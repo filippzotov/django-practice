@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Price</h1>
+
+{% for price in prices %}
+    <strong><p>{{price.0}}</p></strong>
+    {% for item in price.1 %}
+        <p>{{ item }}</p>
+    {% endfor %}
+{% endfor %}
+{% endblock content %}

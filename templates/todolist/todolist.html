@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>ToDoList</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    <table>
+        {{ taskform.as_table }}
+    </table>
+    <input type="submit" value="Добавить" class="btn btn-secondary">
+</form>
+
+{% endblock content %}

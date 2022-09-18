@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block sidebar %}
+<div class="col-sm-2">
+  <h2>Компании</h2>
+
+  {% if companys %}
+
+  <div class="list-group">
+    <a href="{% url 'consoles' %}" class="list-group-item list-group-item-action">Все</a>
+    {% for company in companys %}
+    <a href="{% url 'consoles' %}{{company.pk}}" class="list-group-item list-group-item-action">{{company.name}}</a>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+{% endblock sidebar %}
+{% block content %}
+<div class="col-sm-10">
+  <h2>Консоли</h2>
+  {% if consoles %}
+  <div class="container">
+    <div class="row">
+
+      {% for console in consoles %}
+      <div class="col-sm-4">
+        <div class="card" style="width: 18rem; margin: 5px;">
+          <a href="{{console.get_absolute_url}}"><img src="{{console.photo.url}}"
+              style="max-width: 100%; height: auto; display: block;" class="card-img-top img-thumbnail" alt="..."></a>
+          <div class="card-body">
+            <h5 class="card-title"><a href="{{console.get_absolute_url}}">{{console.name}}</a></h5>
+            <p class="card-text">{{console.company}} Some quick example text to build on the card title and make up the
+              bulk of the card's content.</p>
+
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+
+    </div>
+  </div>
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 mx-auto">
+            <img src="{{news.photo.url}}" class="img-fluid rounded mx-auto d-block" alt="...">
+
+
+            <h1>{{news.name}}</h1>
+            <p class="text">{{news.text}}</p>
+
+            <h4>Comments</h4>
+            {% if news.comments_set.all %}
+            {% for comment in news.comments_set.all %}
+            <div class="card mb-2">
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col"><strong>{{ comment.user }}</strong></div>
+                            <div class="col">{{ comment.date_time|date:"H:i d.m.Y" }}</div>
+                        </div>
+                        <div class="row">
+                            <p class="text-right">{{ comment.text }}</p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+            <div class="card mb-2">
+                <div class="card-body">
+                    {% if user.is_authenticated %}
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ comment_form.as_p }}
+                        <input type="submit" value="Submit" class="btn btn-secondary">
+                    </form>
+                    {% else %}
+                    <p>Только авторизованные пользователи могут оставлять комментарии</p>
+                    {% endif %}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

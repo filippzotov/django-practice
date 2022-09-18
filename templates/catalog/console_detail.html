@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<img src="{{console.photo.url}}" style="max-width: 100%; height: auto; display: block;" class="img-thumbnail" alt="...">
+<p>{{ console.name }}</p>
+<p>Компания: {{ console.company }}</p>
+
+{% endblock content %}
